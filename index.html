@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Larana Bakery - premium cakes, cookies and cupcakes."
+  >
+
+  <title>Larana Bakery</title>
+
+  <!-- Main website styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 3D hero effect styling -->
+  <style>
+    .hero-card {
+      max-width: 485px;
+      margin-left: auto;
+      padding: 16px;
+      transform-style: preserve-3d;
+    }
+
+    .hero-scene {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 24px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.32),
+          rgba(255, 255, 255, 0.05) 65%
+        );
+
+      transform-style: preserve-3d;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      z-index: 1;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(200, 148, 93, 0.34),
+          rgba(200, 148, 93, 0.08) 58%,
+          transparent 74%
+        );
+
+      animation:
+        glowPulse 4s ease-in-out infinite;
+    }
+
+    .cake-frame {
+      position: relative;
+      z-index: 3;
+
+      width: 100%;
+      max-width: 430px;
+
+      transform-style: preserve-3d;
+      animation:
+        cakeFloat 6s ease-in-out infinite;
+    }
+
+    .cake-spin {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+
+      border-radius: 22px;
+
+      transform-origin: center;
+      transform-style: preserve-3d;
+
+      filter:
+        drop-shadow(
+          0 26px 30px rgba(45, 23, 15, 0.23)
+        );
+
+      animation:
+        cakeRotate 7s ease-in-out infinite;
+    }
+
+    .hero-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: 76px;
+      z-index: 2;
+
+      width: 62%;
+      height: 30px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.35),
+          rgba(0, 0, 0, 0.12) 50%,
+          transparent 75%
+        );
+
+      transform:
+        translateX(-50%);
+
+      animation:
+        shadowMove 6s ease-in-out infinite;
+    }
+
+    .floating-chocolate {
+      position: absolute;
+      z-index: 4;
+
+      width: 24px;
+      height: 24px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #9a6650,
+          #4b271d 65%,
+          #27130e
+        );
+
+      box-shadow:
+        0 10px 18px rgba(49, 24, 15, 0.22);
+
+      pointer-events: none;
+    }
+
+    .chocolate-one {
+      top: 15%;
+      left: 9%;
+
+      animation:
+        floatPieceOne 5s ease-in-out infinite;
+    }
+
+    .chocolate-two {
+      top: 26%;
+      right: 8%;
+
+      width: 18px;
+      height: 18px;
+
+      animation:
+        floatPieceTwo 6s ease-in-out infinite;
+    }
+
+    .chocolate-three {
+      bottom: 25%;
+      left: 10%;
+
+      width: 16px;
+      height: 16px;
+
+      animation:
+        floatPieceThree 5.5s ease-in-out infinite;
+    }
+
+    .hero-badge {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 6;
+
+      padding: 14px 16px;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.4);
+
+      border-radius: 18px;
+
+      background:
+        rgba(255, 255, 255, 0.88);
+
+      box-shadow:
+        0 15px 30px rgba(50, 25, 17, 0.19);
+
+      backdrop-filter:
+        blur(14px);
+
+      -webkit-backdrop-filter:
+        blur(14px);
+
+      transform:
+        translateZ(75px);
+    }
+
+    .hero-badge strong {
+      display: block;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size: 1.05rem;
+    }
+
+    .hero-badge small {
+      display: block;
+      margin-top: 3px;
+
+      color: var(--muted, #80685d);
+      font-size: 0.75rem;
+    }
+
+    @keyframes cakeRotate {
+      0% {
+        transform:
+          perspective(900px)
+          rotateY(-13deg)
+          rotateX(3deg)
+          scale(0.98);
+      }
+
+      25% {
+        transform:
+          perspective(900px)
+          rotateY(-5deg)
+          rotateX(1deg)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          perspective(900px)
+          rotateY(13deg)
+          rotateX(3deg)
+          scale(1.02);
+      }
+
+      75% {
+        transform:
+          perspective(900px)
+          rotateY(5deg)
+          rotateX(1deg)
+          scale(1);
+      }
+
+      100% {
+        transform:
+          perspective(900px)
+          rotateY(-13deg)
+          rotateX(3deg)
+          scale(0.98);
+      }
+    }
+
+    @keyframes cakeFloat {
+      0%,
+      100% {
+        transform:
+          translateY(5px)
+          translateZ(35px);
+      }
+
+      50% {
+        transform:
+          translateY(-12px)
+          translateZ(55px);
+      }
+    }
+
+    @keyframes shadowMove {
+      0%,
+      100% {
+        opacity: 0.33;
+
+        transform:
+          translateX(-50%)
+          scaleX(0.9);
+      }
+
+      50% {
+        opacity: 0.18;
+
+        transform:
+          translateX(-50%)
+          scaleX(1.08);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%,
+      100% {
+        opacity: 0.55;
+        transform: scale(0.92);
+      }
+
+      50% {
+        opacity: 0.9;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes floatPieceOne {
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      50% {
+        transform:
+          translateY(-18px)
+          rotate(25deg);
+      }
+    }
+
+    @keyframes floatPieceTwo {
+      0%,
+      100% {
+        transform:
+          translateY(8px)
+          rotate(0deg);
+      }
+
+      50% {
+        transform:
+          translateY(-15px)
+          rotate(-30deg);
+      }
+    }
+
+    @keyframes floatPieceThree {
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      50% {
+        transform:
+          translateY(-13px)
+          rotate(40deg);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-card {
+        margin-inline: auto;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-scene {
+        min-height: 470px;
+      }
+
+      .cake-frame {
+        max-width: 350px;
+      }
+
+      .hero-shadow {
+        bottom: 70px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-scene {
+        min-height: 420px;
+      }
+
+      .cake-frame {
+        max-width: 310px;
+      }
+
+      .hero-badge {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        padding: 12px 14px;
+      }
+
+      .floating-chocolate {
+        transform: scale(0.8);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cake-frame,
+      .cake-spin,
+      .hero-glow,
+      .hero-shadow,
+      .floating-chocolate {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a
+      href="#home"
+      class="brand"
+      aria-label="Larana Bakery home"
+    >
+      <img
+        src="logo.jpg"
+        alt="Larana Bakery logo"
+      >
+
+      <div>
+        <h1>LARANA BAKERY</h1>
+        <p>Cakes, cookies and happiness</p>
+      </div>
+    </a>
+
+    <button
+      class="menu"
+      id="menuBtn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="links"
+      id="navLinks"
+      aria-label="Main navigation"
+    >
+      <a href="#home">Home</a>
+      <a href="#products">Our Treats</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+      <a
+        class="order"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20would%20like%20to%20place%20an%20order."
+      >
+        Order Now
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero Section -->
+
+  <section
+    class="hero"
+    id="home"
+  >
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+
+        <span class="tag">
+          Homemade with a premium touch
+        </span>
+
+        <h2>
+          Sweet moments begin at
+          <em>Larana Bakery.</em>
+        </h2>
+
+        <p>
+          Discover beautifully prepared cakes, freshly baked
+          cookies and delightful cupcakes made to add sweetness
+          to celebrations and everyday moments.
+        </p>
+
+        <div class="btns">
+
+          <a
+            class="btn primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20would%20like%20to%20place%20an%20order."
+          >
+            Order on WhatsApp
+          </a>
+
+          <a
+            class="btn secondary"
+            href="#products"
+          >
+            Explore Our Treats
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- 3D Cake Section -->
+
+      <div class="tilt-wrap">
+
+        <div
+          class="card hero-card interactive-tilt"
+          id="heroCard"
+        >
+
+          <div class="hero-scene">
+
+            <div
+              class="hero-glow"
+              aria-hidden="true"
+            ></div>
+
+            <div
+              class="floating-chocolate chocolate-one"
+              aria-hidden="true"
+            ></div>
+
+            <div
+              class="floating-chocolate chocolate-two"
+              aria-hidden="true"
+            ></div>
+
+            <div
+              class="floating-chocolate chocolate-three"
+              aria-hidden="true"
+            ></div>
+
+            <div class="cake-frame">
+
+              <img
+                src="cake.png"
+                alt="Chocolate celebration cake"
+                class="cake-spin"
+              >
+
+            </div>
+
+            <div
+              class="hero-shadow"
+              aria-hidden="true"
+            ></div>
+
+            <div class="hero-badge">
+
+              <strong>
+                Signature Cake
+              </strong>
+
+              <small>
+                Rich, elegant and celebration-ready
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Products Section -->
+
+  <section
+    class="products"
+    id="products"
+  >
+    <div class="container">
+
+      <div class="heading">
+
+        <span>
+          OUR SPECIAL PICKS
+        </span>
+
+        <h3>
+          Baked to make every moment sweeter
+        </h3>
+
+        <p>
+          Explore our signature cake, homemade cookies and
+          beautifully decorated cupcakes.
+        </p>
+
+      </div>
+
+      <div class="grid">
+
+        <!-- Cake Product -->
+
+        <article class="tilt-wrap">
+
+          <div class="card product interactive-tilt">
+
+            <img
+              src="cake.png"
+              alt="Chocolate Celebration Cake"
+              loading="lazy"
+            >
+
+            <div class="info">
+
+              <small>
+                01 · SIGNATURE
+              </small>
+
+              <h4>
+                Chocolate Celebration Cake
+              </h4>
+
+              <p>
+                Rich chocolate cake with smooth frosting,
+                perfect for birthdays and celebrations.
+              </p>
+
+              <div class="product-bottom">
+
+                <span>
+                  Custom cakes available
+                </span>
+
+                <a
+                  class="small-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20want%20to%20order%20a%20Chocolate%20Celebration%20Cake."
+                >
+                  Order Cake
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <!-- Cookies Product -->
+
+        <article class="tilt-wrap">
+
+          <div class="card product interactive-tilt">
+
+            <img
+              src="cookies.png"
+              alt="Chocolate Chip Cookies"
+              loading="lazy"
+            >
+
+            <div class="info">
+
+              <small>
+                02 · HOMEMADE
+              </small>
+
+              <h4>
+                Chocolate Chip Cookies
+              </h4>
+
+              <p>
+                Golden homemade cookies packed with delicious
+                chocolate chips and freshly baked goodness.
+              </p>
+
+              <div class="product-bottom">
+
+                <span>
+                  Freshly baked
+                </span>
+
+                <a
+                  class="small-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20want%20to%20order%20Chocolate%20Chip%20Cookies."
+                >
+                  Order Cookies
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <!-- Cupcake Product -->
+
+        <article class="tilt-wrap">
+
+          <div class="card product interactive-tilt">
+
+            <img
+              src="cupcake.png"
+              alt="Chocolate Cream Cupcakes"
+              loading="lazy"
+            >
+
+            <div class="info">
+
+              <small>
+                03 · DELIGHT
+              </small>
+
+              <h4>
+                Chocolate Cream Cupcakes
+              </h4>
+
+              <p>
+                Soft chocolate cupcakes topped with smooth
+                cream, perfect for gifting and parties.
+              </p>
+
+              <div class="product-bottom">
+
+                <span>
+                  Party packs available
+                </span>
+
+                <a
+                  class="small-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20want%20to%20order%20Chocolate%20Cream%20Cupcakes."
+                >
+                  Order Cupcakes
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Section -->
+
+  <section
+    class="about"
+    id="about"
+  >
+    <div class="container about-box">
+
+      <div>
+
+        <h3>
+          Made with care, warmth and sweetness
+        </h3>
+
+        <p>
+          Larana Bakery combines elegant presentation with
+          comforting homemade flavours. Every cake, cookie and
+          cupcake is prepared to make your special moments sweeter.
+        </p>
+
+      </div>
+
+      <div class="points">
+
+        <div class="point">
+          ✓ Freshly Prepared
+        </div>
+
+        <div class="point">
+          ✓ Custom Celebration Cakes
+        </div>
+
+        <div class="point">
+          ✓ Easy WhatsApp Ordering
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+
+  <section
+    class="contact"
+    id="contact"
+  >
+    <div class="container contact-box">
+
+      <div>
+
+        <h3>
+          Let us bake something special for you.
+        </h3>
+
+        <p>
+          Contact Larana Bakery directly to discuss your order,
+          preferred product and required date.
+        </p>
+
+        <a
+          class="phone"
+          href="tel:+919376303981"
+        >
+          ☎ +91 93763 03981
+        </a>
+
+      </div>
+
+      <div class="panel">
+
+        <h4>
+          Place Your Order
+        </h4>
+
+        <p>
+          Send your preferred product, quantity, required date
+          and special instructions through WhatsApp.
+        </p>
+
+        <a
+          class="whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://wa.me/919376303981?text=Hello%20Larana%20Bakery%2C%20I%20would%20like%20to%20place%20an%20order.%0A%0AProduct%3A%20%0AQuantity%3A%20%0ARequired%20Date%3A%20%0ASpecial%20Instructions%3A%20"
+        >
+          WhatsApp Larana Bakery
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+
+<footer>
+
+  <div class="container">
+
+    <img
+      class="footer-logo"
+      src="logo.jpg"
+      alt="Larana Bakery logo"
+      loading="lazy"
+    >
+
+    <h4>
+      LARANA BAKERY
+    </h4>
+
+    <p>
+      © <span id="year"></span>
+      Larana Bakery. All rights reserved.
+    </p>
+
+    <div class="credit">
+
+      Created by Shalini
+
+      <strong>
+        SVS DIGITAL STUDIO 🎙️
+      </strong>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+  const menuButton =
+    document.getElementById("menuBtn");
+
+  const navigation =
+    document.getElementById("navLinks");
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+      const menuIsOpen =
+        navigation.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(menuIsOpen)
+      );
+    }
+  );
+
+  navigation
+    .querySelectorAll("a")
+    .forEach(function (link) {
+      link.addEventListener(
+        "click",
+        function () {
+          navigation.classList.remove("open");
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+      );
+    });
+
+  const hoverSupported =
+    window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+  if (hoverSupported) {
+    const tiltCards =
+      document.querySelectorAll(
+        ".interactive-tilt"
+      );
+
+    tiltCards.forEach(function (card) {
+
+      card.addEventListener(
+        "mousemove",
+        function (event) {
+          const rectangle =
+            card.getBoundingClientRect();
+
+          const horizontalPosition =
+            event.clientX - rectangle.left;
+
+          const verticalPosition =
+            event.clientY - rectangle.top;
+
+          const rotateHorizontal =
+            (
+              verticalPosition /
+              rectangle.height -
+              0.5
+            ) * -8;
+
+          const rotateVertical =
+            (
+              horizontalPosition /
+              rectangle.width -
+              0.5
+            ) * 8;
+
+          card.style.transform =
+            "rotateX(" +
+            rotateHorizontal +
+            "deg) rotateY(" +
+            rotateVertical +
+            "deg) translateY(-4px)";
+        }
+      );
+
+      card.addEventListener(
+        "mouseleave",
+        function () {
+          card.style.transform =
+            "rotateX(0deg) rotateY(0deg) translateY(0)";
+        }
+      );
+
+    });
+  }
+
+  const heroCard =
+    document.getElementById("heroCard");
+
+  function applyMobileTilt(event) {
+    if (!event.beta || !event.gamma) {
+      return;
+    }
+
+    const rotateX =
+      Math.max(
+        -6,
+        Math.min(6, event.beta - 45)
+      );
+
+    const rotateY =
+      Math.max(
+        -6,
+        Math.min(6, event.gamma)
+      );
+
+    heroCard.style.transform =
+      "rotateX(" +
+      rotateX +
+      "deg) rotateY(" +
+      rotateY +
+      "deg)";
+  }
+
+  if (
+    window.DeviceOrientationEvent &&
+    typeof DeviceOrientationEvent
+      .requestPermission !== "function"
+  ) {
+    window.addEventListener(
+      "deviceorientation",
+      applyMobileTilt
+    );
+  }
+
+  document.getElementById(
+    "year"
+  ).textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
